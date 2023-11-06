@@ -1,0 +1,17 @@
+### Task Requirements
+
+[Feature] As a user, we want to display a user's high score board
+
+
+[Feature] As a system, we want to add a "score" for user and show it
+
+About the task, in website we have a score board, which shows the top 10 user’s scores. 
+We want live update of the score board. User can do an action (which we do not need to care what the action is), completing this action will increase the user’s score.
+
+As the system, 
+
+1. 
+2. .
+3. 
+4. Upon completion the action will dispatch an API call to the application server to update the score.
+5. We want to prevent malicious users from increasing scores without authorisation.
