@@ -9,3 +9,11 @@ export interface User {
   phoneNumber: string;
   address: string;
 }
+
+export interface PostUsersParams {
+  id: number;
+  fullName: string;
+  sex: number;
+  phoneNumber: string;
+  address: string;
+}
