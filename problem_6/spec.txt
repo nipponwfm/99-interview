@@ -1,17 +1,65 @@
 ### Task Requirements
 
-[Feature] As a user, we want to display a user's high score board
+[FrontEnd Feature] As a user, we want to display a user's high score board
+  In website we want to design a score board, which shows the top 10 user by their scores. 
+  We want live update of the score board. User can do an action (which we do not need to care what the action is), completing this action will increase the user’s score (score point will be calculated below).
+  Upon completion the action will dispatch an API call to the application server to update the score.
+  We want to prevent malicious users from increasing scores without authorisation.
+  - Score point
+    + action 1: +1pt
+    + action 2: +2pt
+    + action 3: +3pt
 
 
-[Feature] As a system, we want to add a "score" for user and show it
+[Backend Feature] As a system, we want to add a "score" for user
+  In website we have a score board, which shows the top 10 user by their scores. 
+  We want live update of the score board everytime user do an action, completing this action will increase the user’s score (score point will be receive from frontend).
+  Upon completion the action will dispatch an API call to the application server to update the score.
+  We want to prevent malicious users from increasing scores without authorisation.
 
-About the task, in website we have a score board, which shows the top 10 user’s scores. 
-We want live update of the score board. User can do an action (which we do not need to care what the action is), completing this action will increase the user’s score.
+  new package added: socket.io@1.0.0
 
-As the system, 
+  In Bridge (a bridge, backend with frontend)
+    suggest action name: <fire-action>
+      description: 
+        + after the user emit an action, the score point will be received and updated, then send to all the user for re-rendering
+        + the new user's property score point will be added into the user table with data type <number>
+        + the updated user should be the user that fire action
+      ft middleware: should authorize the user in request
+      ft body: 
+        + userId: number
+        + incomingScore: number
+      ft response: array of top 10 users by score
+        + userId: number
+        + userName: string
+        + score: number
+        + (some user information)
+  
+  In DatabaseService
+    PUT /user/:id
+      description: update user information api
+      ft body
+        + score: number
+        + ...
+      ft response:
+        + 200: for success
+        + 400: for failure
+    
+    POST /users/
+      description: get users information api
+      ft body:
+        + limit: number (10)
+        + sortColumn: enum string (score)
+        + sort: enum string (desc)
+        + ...
+      ft response: array of users (top 10 users by score)
+        + userId: number
+        + userName: string
+        + score: number
+        + (some user information)
 
-1. 
-2. .
-3. 
-4. Upon completion the action will dispatch an API call to the application server to update the score.
-5. We want to prevent malicious users from increasing scores without authorisation.
+
+  you should done this before giving us review:
+    + make sure the updated user should be the user that fire action
+    + give some evidences to imply the function work correctly
+    + run UT, E2E, IT
