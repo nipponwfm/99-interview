@@ -12,3 +12,23 @@ export type UserResponse = Response<
     }
   >
 >;
+
+export type UsersResponse = Response<
+  Record<
+    any,
+    Array<{
+      id: number;
+      fullName: string;
+      sex: number;
+      phoneNumber: string;
+      address: string;
+    }>
+  >
+>;
+
+export interface PutUserParams {
+  fullName: string;
+  sex: number;
+  phoneNumber: string;
+  address: string;
+}

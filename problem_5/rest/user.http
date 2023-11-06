@@ -1,0 +1,39 @@
+###
+GET http://localhost:3001/user/3
+
+###
+POST http://localhost:3001/users
+Content-Type: application/json
+
+{
+  "sex": false
+}
+
+###
+POST http://localhost:3001/user
+Content-Type: application/json
+
+{
+  "fullName": "Truong Quang Thanh Nam",
+  "sex": false,
+  "phoneNumber": "01223",
+  "address": "Da nang"
+}
+
+###
+PUT http://localhost:3001/user/1
+Content-Type: application/json
+
+{
+  "fullName": "Truong Quang Thanh Dong 2",
+  "sex": false,
+  "phoneNumber": "01223",
+  "address": "Da nang"
+}
+
+###
+DELETE http://localhost:3001/user/
+Content-Type: application/json
+
+{
+}

@@ -36,6 +36,7 @@ class App {
         this.app = (0, express_1.default)();
         this.config = new app_config_1.AppConfig();
         this.logger = new logger_1.LoggerService();
+        this.app.use(express_1.default.json());
         this.app.use(userRouter.default);
         const server = http_1.default.createServer(this.app);
         server.listen(this.config.port, () => {

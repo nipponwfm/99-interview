@@ -11,6 +11,8 @@ class App {
   private logger = new LoggerService();
 
   constructor() {
+    this.app.use(express.json());
+
     this.app.use(userRouter.default);
 
     const server = http.createServer(this.app);

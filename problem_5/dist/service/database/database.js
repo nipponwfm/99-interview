@@ -28,21 +28,23 @@ class DatabaseService {
     }
     query$(sql, pattern) {
         const result = new Promise((resolved, rejected) => {
-            this.database.all(sql, [...pattern], (error, rows) => {
-                if (error) {
-                    rejected(new Error(error.message));
-                }
+            this.database.all(sql, pattern, (error, rows) => {
+                if (error)
+                    return rejected(error);
                 return resolved(rows);
             });
         });
         return result;
     }
     update$(sql, pattern) {
-        this.database.run(sql, [...pattern], (error) => {
-            if (error)
-                throw new Error(error.message);
+        const result = new Promise((resolved, rejected) => {
+            this.database.run(sql, pattern, (error) => {
+                if (error)
+                    rejected(error);
+                return resolved(null);
+            });
         });
-        return;
+        return result;
     }
 }
 exports.DatabaseService = DatabaseService;

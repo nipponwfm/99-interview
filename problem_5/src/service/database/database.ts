@@ -27,12 +27,10 @@ export class DatabaseService implements IDatabaseService {
     return;
   }
 
-  query$(sql: string, pattern: Array<any>): Promise<any> {
+  query$(sql: string, pattern: object): Promise<any> {
     const result = new Promise((resolved, rejected) => {
-      this.database.all(sql, [...pattern], (error, rows) => {
-        if (error) {
-          rejected(new Error(error.message));
-        }
+      this.database.all(sql, pattern, (error, rows) => {
+        if (error) return rejected(error);
         return resolved(rows);
       });
     });
@@ -40,11 +38,14 @@ export class DatabaseService implements IDatabaseService {
     return result;
   }
 
-  update$(sql: string, pattern: Array<any>): void {
-    this.database.run(sql, [...pattern], (error) => {
-      if (error) throw new Error(error.message);
+  update$(sql: string, pattern: object): Promise<any> {
+    const result = new Promise((resolved, rejected) => {
+      this.database.run(sql, pattern, (error) => {
+        if (error) rejected(error);
+        return resolved(null);
+      });
     });
 
-    return;
+    return result;
   }
 }

@@ -5,5 +5,5 @@ SELECT
   phone_number as phoneNumber,
   address as address
 FROM users AS u
-WHERE u.id = ?
+WHERE u.id = $id
 ;
