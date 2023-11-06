@@ -19,6 +19,7 @@ problem_6: 1 hour 8 mins
 <br>(you can check it on git commit timeline)
 
 <br>
+<br>
 For checking, you need to:
 
 - npm i (dependencies and devDependencies)
