@@ -1,4 +1,4 @@
-# 99-interview
+# 99tech-interview
 
 Here is my result
 
