@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "start": "npm run build && concurrently \"npm run build:watch\" \"npm run serve:watch\"",
+    "build": "tsc --build tsconfig.json && npm run copy-files",
+    "build:watch": "tsc -w",
+    "serve": "node dist/app.js",
+    "serve:watch": "nodemon dist/app.js",
+    "copy-files": "copyfiles -f src/config/sql/* dist/config/sql && copyfiles -f src/service/database/data/* dist/service/database/data",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.20",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "copyfiles": "^2.4.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "sqlite3": "^5.1.6"
+  }
+}
