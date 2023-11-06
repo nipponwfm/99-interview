@@ -19,21 +19,27 @@
 
   new package added: socket.io@1.0.0
 
+  In Frontend
+    suggest action name: <render-score-board>
+    description: 
+      + this action was listened by all users online. 
+      + Once receive this event, the score board should be update to the newest
+
   In Bridge (a bridge, backend with frontend)
     suggest action name: <fire-action>
-      description: 
-        + after the user emit an action, the score point will be received and updated, then send to all the user for re-rendering
-        + the new user's property score point will be added into the user table with data type <number>
-        + the updated user should be the user that fire action
-      ft middleware: should authorize the user in request
-      ft body: 
-        + userId: number
-        + incomingScore: number
-      ft response: array of top 10 users by score
-        + userId: number
-        + userName: string
-        + score: number
-        + (some user information)
+    description: 
+      + after the user emit an action, the score point will be received and updated, then send to all the user for re-rendering
+      + the new user's property score point will be added into the user table with data type <number>
+      + the updated user should be the user that fire action
+    ft middleware: should authorize the user in request
+    ft body: 
+      + userId: number
+      + incomingScore: number
+    ft response: array of top 10 users by score
+      + userId: number
+      + userName: string
+      + score: number
+      + (some user information)
   
   In DatabaseService
     PUT /user/:id

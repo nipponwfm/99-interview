@@ -6,7 +6,7 @@ participant DBService as DBS
 database Database as DB
 
 User->FE: Do an action
-FE->BR: Dispatch an action to 'fire-action'
+FE->BR: Dispatch an action \n<fire-action>
 BR->BR: Authorize the user
 alt user authorized case
   BR->DBS: PUT /user/:id: update user score
@@ -17,7 +17,7 @@ alt user authorized case
   DBS->DB: query
   DBS<-DB:
   BR<-DBS: return list top 10 users by score
-  BR->FE: return list top 10 users by score
+  BR->FE: return list top 10 users by score \n<render-score-board'>
   FE->FE: re-rendering score board
 else user not authorized case
   BR->FE: return 403
