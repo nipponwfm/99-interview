@@ -13,7 +13,7 @@ export class DatabaseService implements IDatabaseService {
     this.database = new sqlite3.Database(databaseFileUrl, sqlite3.OPEN_READWRITE, (error) => {
       if (error) {
         this.logger.error(error.message);
-        throw new Error("Can connect to database");
+        throw new Error("Can not connect to database");
       }
     });
 
